@@ -1,12 +1,14 @@
 import React, { useState } from "react";
 import axios from "axios";
 import AudioReactRecorder, { RecordState } from "audio-react-recorder";
-
+import Player from "./playAudio.js";
 const Audio = () => {
   const [recordState, setRecordState] = useState(null);
-  const [audioURL, setAudioURL] = useState("");
-
-  const userAudio = null;
+  const [data, setData] = useState({
+    audio_url: "",
+    rate: 0,
+    message: "",
+  });
 
   const Start = () => {
     setRecordState(RecordState.START);
@@ -18,36 +20,84 @@ const Audio = () => {
 
   const onStop = (audioData) => {
     console.log("audioData", audioData.url);
-    setAudioURL(audioData.url);
+
+    setData(({ audio_url }) => {
+      return {
+        ...data,
+        audio_url: audioData.url,
+      };
+    });
     // userAudio = audioData;
   };
-
-  // const sendAudio = async () => {
-  //   const rate = form.rate;
-  //   const message = form.message;
-
-  //   const isFinished = false;
-  //   const response = await axios.post("/postAudio", {
-  //     rate: rate,
-  //     message: message,
-  //     audio: userAudio,
+  // const sendAudioFile = (file) => {
+  //   const formData = new FormData();
+  //   formData.append("audio-file", file);
+  //   return axios(audioURL, {
+  //     method: "POST",
+  //     body: formData,
   //   });
-  //   if (response.status === 200) {
-  //     isFinished = true;
+  // };
+
+  // let xhr = new XMLHttpRequest();
+  // xhr.open("GET", data.audio_url, true);
+  // xhr.responseType = "blob";
+  // xhr.onload = function(e) {
+  //   if (this.status == 200) {
+  //     var myBlob = this.response;
+  //     console.log(myBlob);
   //   }
   // };
+  // xhr.send();
+
+  // console.log(xhr);
+
+  // const blob = new Blob([data], { type: "octet-stream" });
+
+  // const href = URL.createObjectURL(blob);
+
+  const handleChange = ({ target: input }) => {
+    setData({
+      ...data,
+      [input.name]: input.value,
+    });
+  };
+
+  const handleOnSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const url = "http://localhost:8080/saveAudio";
+      const { data: res } = await axios.post(url, data);
+      // console.log(res.message);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <div>
+      <Player url={data.audio_url} />
       <AudioReactRecorder state={recordState} onStop={onStop} />
 
       <button onClick={Start}>Start</button>
       <button onClick={Stop}>Stop</button>
-      <form action="http://localhost:8080/saveAudio" method="POST">
-        <input type="number" name="rate" />
-        <input type="text" name="message" />
-        <input type="hidden" value={audioURL} name="audio_url" />
-        <button type="submit">Save</button>
+      <form onSubmit={(e) => handleOnSubmit(e)}>
+        <input
+          type="number"
+          value={data.rate}
+          name="rate"
+          onChange={handleChange}
+        />
+        <input
+          type="text"
+          value={data.message}
+          name="message"
+          onChange={handleChange}
+        />
+        <input type="hidden" value={data.audio_url} name="audio_url" />
+        <button type="submit">
+          {/* onClick={sendAudioFile}  */}
+          Save
+        </button>
       </form>
     </div>
   );
