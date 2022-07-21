@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import AudioReactRecorder, { RecordState } from "audio-react-recorder";
 import Player from "./playAudio.js";
+// import music from "./music.mp3";
 const Audio = () => {
   const [recordState, setRecordState] = useState(null);
   const [data, setData] = useState({
@@ -27,6 +28,7 @@ const Audio = () => {
         audio_url: audioData.url,
       };
     });
+    console.log("there is url" + data.audio_url);
     // userAudio = audioData;
   };
   // const sendAudioFile = (file) => {
@@ -73,6 +75,8 @@ const Audio = () => {
     }
   };
 
+  console.log("data");
+  console.log(data);
   return (
     <div>
       <Player url={data.audio_url} />
@@ -91,6 +95,7 @@ const Audio = () => {
           type="text"
           value={data.message}
           name="message"
+          placeholder="Description"
           onChange={handleChange}
         />
         <input type="hidden" value={data.audio_url} name="audio_url" />

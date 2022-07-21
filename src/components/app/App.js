@@ -4,7 +4,6 @@ import Audio from "../records/audio.js";
 import Player from "../records/playAudio.js";
 import AudioReactRecorder, { RecordState } from "audio-react-recorder";
 import "./App.css";
-
 function App() {
   const [data, setData] = useState({
     nickname: "",
@@ -31,12 +30,12 @@ function App() {
   return (
     <div className="App">
       <Audio />
-      {/* <Player /> */}
       <form onSubmit={handleSubmit}>
         <div>
           <input
             type="text"
             name="nickname"
+            placeholder="Nickname"
             value={data.nickname}
             onChange={handlChange}
           />
@@ -45,6 +44,7 @@ function App() {
           <input
             type="text"
             name="name"
+            placeholder="Name"
             value={data.name}
             onChange={handlChange}
           />
@@ -53,6 +53,7 @@ function App() {
           <input
             type="text"
             name="email"
+            placeholder="Email"
             value={data.email}
             onChange={handlChange}
           />
@@ -61,11 +62,12 @@ function App() {
           <input
             type="password"
             name="password"
+            placeholder="Password"
             value={data.password}
             onChange={handlChange}
           />
         </div>
-        <button type="submit">Submit</button>
+        <button type="submit">Sign Up</button>
       </form>
     </div>
   );
