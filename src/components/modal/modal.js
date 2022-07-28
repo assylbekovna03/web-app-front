@@ -1,5 +1,5 @@
 import React from "react";
-import "./modal.scss";
+import "./modal.css";
 import close from "../assets/close.svg";
 
 const ModalLogin = ({ children, open, isClose }) => {

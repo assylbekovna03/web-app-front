@@ -1,0 +1,28 @@
+.header {
+    display: flex;
+    flex-direction: column;
+}    
+.header-wrapper{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: rgb(31, 31, 138);
+    height: 70px;
+}
+.header-wrapper-nav {
+    display: flex;
+    flex-direction: row;
+    list-style-type: none;
+}
+        
+.header-wrapper-nav nav{
+    color: white;
+    margin-right: 14px;
+    font-size: 16px;
+}
+
+.header-wrapper-auth{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}

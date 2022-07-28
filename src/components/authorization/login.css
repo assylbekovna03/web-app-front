@@ -1,0 +1,64 @@
+input[type=text] {
+    width: 300px;
+} 
+h1{
+    text-align: center;
+    margin-top: 2px;
+    margin-bottom: 10px;
+}
+.stud{
+    text-align: center;
+    margin-top: 16px;
+    margin-bottom: 20px;
+    font-size: 20px;
+}
+p{
+    text-align: center;
+    margin-top: 16px;
+}
+.login #univer select .login input, .login .btn-login {
+    width: 100%;
+    margin: 5px 0;
+    height: 45px;
+    vertical-align: middle;
+    font-size: 16px;
+}
+
+.login .btn-login {
+    background-color: rgb(31, 31, 138);
+    border: none;
+    border-radius: 6px;
+    font-size: 20px;
+    padding: 0 16px;
+    color: #ffffff;
+    font-weight: 700;
+}
+.login select {
+    border: 1px solid #dddfe2;
+    color: #1d2129;
+    padding: 9px 10px;
+    outline: none;
+    background-color: #f8fcff;
+    width: 100%;
+    box-shadow: 0 0 0 2px #e7f3ff;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-radius: 6px;
+}
+.login input {
+    border: 1px solid #dddfe2;
+    color: #1d2129;
+    padding: 9px 10px;
+    outline: none;
+    background-color: #f8fcff;
+    width: 100%;
+    box-shadow: 0 0 0 2px #e7f3ff;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-radius: 6px;
+}
+
+a{
+    text-decoration: none;
+    color:rgb(31, 31, 138);
+}
