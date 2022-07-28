@@ -28,9 +28,9 @@ const Audio = () => {
         audio_url: audioData.url,
       };
     });
-    console.log("there is url" + data.audio_url);
     // userAudio = audioData;
   };
+
   // const sendAudioFile = (file) => {
   //   const formData = new FormData();
   //   formData.append("audio-file", file);
@@ -75,8 +75,13 @@ const Audio = () => {
     }
   };
 
-  console.log("data");
-  console.log(data);
+  // const getId = async (_id) => {
+  //   return await axios
+  //     .post("https://localhost:8080/saveAudio/:id", {
+  //       id: _id,
+  //     })
+  //     .then((res = res.data));
+  // };
   return (
     <div>
       <Player url={data.audio_url} />

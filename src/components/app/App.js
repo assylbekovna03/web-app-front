@@ -11,22 +11,68 @@ function App() {
     email: "",
     password: "",
   });
+
+  const [login, setLogin] = useState({
+    nickname: "",
+    password: "",
+  });
+
   const handlChange = ({ target: input }) => {
     setData({
       ...data,
       [input.name]: input.value,
     });
   };
+
+  const handleToChange = ({ target: input }) => {
+    setLogin({
+      ...login,
+      [input.name]: input.value,
+    });
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       const url = "http://localhost:8080/api/signup";
       const { data: res } = await axios.post(url, data);
       // console.log(res.message);
+      setData({
+        nickname: "",
+        name: "",
+        email: "",
+        password: "",
+      });
     } catch (error) {
       console.log(error);
     }
   };
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    try {
+      const url = "http://localhost:8080/api/signin";
+      const { login: res } = await axios.post(url, login);
+      // console.log(res.message);
+      setLogin({
+        nickname: "",
+        password: "",
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const handleSignOut = async (e) => {
+    e.preventDefault();
+    try {
+      const url = "http://localhost:8080/api/signout";
+      const { login: res } = await axios.post(url, login);
+      // console.log(res.message);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <div className="App">
       <Audio />
@@ -69,8 +115,32 @@ function App() {
         </div>
         <button type="submit">Sign Up</button>
       </form>
+
+      <form className="form" onSubmit={handleLogin}>
+        <div className="input-group">
+          <input
+            name="nickname"
+            placeholder="nickname"
+            value={login.nickname}
+            onChange={handleToChange}
+          />
+        </div>
+        <div className="input-group">
+          <input
+            type="password"
+            name="password"
+            placeholder="password"
+            value={login.password}
+            onChange={handleToChange}
+          />
+        </div>
+        <button className="primary">Sign In</button>
+      </form>
+
+      <button className="signout" onSubmit={handleSignOut}>
+        Sign Out
+      </button>
     </div>
   );
 }
-
 export default App;
